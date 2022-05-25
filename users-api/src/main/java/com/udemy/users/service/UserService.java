@@ -1,8 +1,7 @@
 package com.udemy.users.service;
 
-import com.udemy.users.model.CreateUserRequestModel;
-import com.udemy.users.model.User;
+import com.udemy.users.data.shared.UserDTO;
 
 public interface UserService {
-    User create(CreateUserRequestModel requestModel);
+    UserDTO create(UserDTO requestModel);
 }

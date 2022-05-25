@@ -1,4 +1,4 @@
-package com.udemy.users.model;
+package com.udemy.users.data.entity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,11 +8,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
-@Builder
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue
@@ -23,9 +22,9 @@ public class User implements Serializable {
     private String firstName;
     @Column(nullable = false, length = 50)
     private String lastName;
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 120, unique = true)
     private String email;
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 120, unique = true)
     private String encryptedPassword;
 }
 
