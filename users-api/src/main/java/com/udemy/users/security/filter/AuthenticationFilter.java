@@ -24,8 +24,8 @@ import java.util.Date;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private UserService userService;
-    private Environment environment;
+    private final UserService userService;
+    private final Environment environment;
 
     public AuthenticationFilter(UserService userService, Environment environment, AuthenticationManager authenticationManager) {
         super(authenticationManager);

@@ -21,6 +21,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/isAvailable")
+    public String check() {
+        return "Success";
+    }
+
     @GetMapping("/status/check")
     public String status() {
         return "Working";
