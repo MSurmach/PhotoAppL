@@ -7,6 +7,7 @@ import com.udemy.users.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
 
+    @Value("${token.secret}")
+    private String secretToken;
+
     @Autowired
     private UserService userService;
 
@@ -28,7 +32,7 @@ public class UserController {
 
     @GetMapping("/status/check")
     public String status() {
-        return "Working";
+        return "Working with token " + secretToken;
     }
 
     @PostMapping(

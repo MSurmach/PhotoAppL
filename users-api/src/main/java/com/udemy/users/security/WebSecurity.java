@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
@@ -28,8 +29,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().
                 antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip")).
                 and().
-                addFilter(getAuthenticationFilter());
-        http.headers().frameOptions().disable();
+                addFilter(getAuthenticationFilter()).
+                sessionManagement().
+                sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+                and().
+                headers().
+                frameOptions().
+                disable();
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception {
