@@ -23,6 +23,7 @@
         <module>accounts-api</module>
         <module>gateway-api</module>
         <module>config-server</module>
+        <module>albums-api</module>
     </modules>
 
     <dependencyManagement>
@@ -46,6 +47,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
@@ -58,6 +63,15 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.6.7</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
