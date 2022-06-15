@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     UserDTO getUserByEmail(String email);
+
+    UserDTO getUserByUserId(String userId);
 }

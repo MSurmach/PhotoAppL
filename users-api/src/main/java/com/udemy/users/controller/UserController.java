@@ -35,15 +35,22 @@ public class UserController {
         return "Working with token " + environment.getProperty("token.secret");
     }
 
-    @PostMapping(
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
-    )
+    @PostMapping(consumes = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE},
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<CreateUserResponseModel> create(@Valid @RequestBody CreateUserRequestModel requestModel) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         UserDTO createdUser = userService.create(modelMapper.map(requestModel, UserDTO.class));
         CreateUserResponseModel response = modelMapper.map(createdUser, CreateUserResponseModel.class);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{userId}")
+    public UserDTO getUserByUserId(@PathVariable String userId) {
+        return userService.getUserByUserId(userId);
     }
 }
